@@ -1,0 +1,16 @@
+/raw_data/*
+/figs
+/test_figs
+/errors
+*.npz
+*.npy
+/data/*
+!/data/.gitkeep
+/fe/*
+/models/*
+!/models/.gitkeep
+/models copy/*
+/data.tar.gz
+/models.tar.gz
+/scripts/__pycache__
+/output/*
