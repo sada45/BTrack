@@ -322,12 +322,12 @@ def model_train_main(classifier, train_dataset, group_size, include, aliens, in_
                         test_data = fingerprint_group_dataset(dataset_path.format(dis), in_chan=in_chan, group_size=group_size, include=include, exclude=exclude+aliens)
                         acc = model_others_eval(classifier, test_data, alien_ids=aliens, group_size=group_size, confi_lim=confi_lim)
                     print(dis, acc)
-                    torch.save(classifier.state_dict(), "./models/{}_classifer_{}.pt".format(dev_name, step))
-                # site_path = "/data/blueprint/data/nn_data/{}_{}.npz".format(dev_name, "{}")
-                # for s in ["conference", "terrace", "corridor"]:
-                #     test_data = fingerprint_group_dataset(site_path.format(s), in_chan=in_chan, group_size=group_size, include=include)
-                #     acc = model_others_eval(classifier, test_data, alien_ids=aliens, group_size=1, confi_lim=confi_lim)
-                #     print(s, acc)
+                torch.save(classifier.state_dict(), "./models/site_{}_classifer_{}.pt".format(dev_name, step))
+                site_path = "/data/blueprint/data/nn_data/{}_site_{}.npz".format(dev_name, "{}")
+                for s in ["conference", "terrace", "corridor"]:
+                    test_data = fingerprint_group_dataset(site_path.format(s), in_chan=in_chan, group_size=group_size, include=include)
+                    acc = model_others_eval(classifier, test_data, alien_ids=aliens, group_size=1, confi_lim=confi_lim)
+                    print(s, acc)
                 classifier.train()
 
             if step_num != -1 and step == step_num:
@@ -376,15 +376,15 @@ def nrf_main(load=False, group_size=3):
         torch.save(classifier.state_dict(), "./models/{}_classifer_final.pt".format(dev_name))
     # 3, 5, 7, 9, 11
     for dis in [1, 3, 5, 7, 9, 11]:
-        # if dis == 1:
-        #     test_data = fingerprint_others_dataset(dataset_path.format(dis), in_chan=chan, include=include, train=False)
-        # else:
-        test_data = fingerprint_group_dataset(dataset_path.format(dis), in_chan=chan, group_size=group_size, include=include, exclude=exlcude+alien)
+        if dis == 1:
+            test_data = fingerprint_others_dataset(dataset_path.format(dis), in_chan=chan, include=include, train=False)
+        else:
+            test_data = fingerprint_group_dataset(dataset_path.format(dis), in_chan=chan, group_size=group_size, include=include, exclude=exlcude+alien)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=group_size, confi_lim=confi_lim)
         print(dis, acc)
-    site_path = "/data/blueprint/data/nn_data/{}_{}.npz".format(dev_name, "{}")
+    site_path = "/data/btrack/data/nn_data/{}_{}.npz".format(dev_name, "{}")
     for s in ["conference", "terrace", "corridor"]:
-        test_data = fingerprint_group_dataset(site_path.format(s), in_chan=chan, group_size=group_size, include=include, exclude=exlcude+alien)
+        test_data = fingerprint_group_dataset(site_path.format(s), in_chan=chan, group_size=group_size, include=include)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=1, confi_lim=confi_lim)
         print(s, acc)
 
@@ -416,7 +416,7 @@ def cc2650_main(load=False, group_size=3):
             test_data = fingerprint_group_dataset(dataset_path.format(dis), in_chan=chan, group_size=group_size, include=include)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=group_size, confi_lim=confi_lim)
         print(dis, acc)
-    site_path = "/data/blueprint/data/nn_data/{}_{}.npz".format(dev_name, "{}")
+    site_path = "/data/btrack/data/nn_data/{}_{}.npz".format(dev_name, "{}")
     for s in ["conference", "terrace", "corridor"]:
         test_data = fingerprint_group_dataset(site_path.format(s), in_chan=chan, group_size=group_size, include=include)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=1, confi_lim=confi_lim)
@@ -448,7 +448,7 @@ def da_main(load=False, group_size=1):
             test_data = fingerprint_group_dataset(dataset_path.format(dis), in_chan=chan, group_size=group_size, include=include, exclude=exlcude+alien)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=group_size, confi_lim=confi_lim)
         print(dis, acc)
-    site_path = "/data/blueprint/data/nn_data/{}_{}.npz".format(dev_name, "{}")
+    site_path = "/data/btrack/data/nn_data/{}_{}.npz".format(dev_name, "{}")
     for s in ["conference", "terrace", "corridor"]:
         test_data = fingerprint_group_dataset(site_path.format(s), in_chan=chan, group_size=group_size, include=include)
         acc = model_others_eval(classifier, test_data, alien_ids=alien, group_size=1, confi_lim=confi_lim)
