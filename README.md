@@ -33,4 +33,8 @@ When we fist collect the dataset, it also has the same "sudden drop" issue since
 The dataset we used now is collected at the same place but at a time when most of the people went out for a conference and only two people are left in this floor.
 
 17th Jun 2024 Update:
+
 The dataset for the nRF52840 in different environment has been updated.
+The accuracy of nRF52840 in different environments is sightly different with the number in the paper (i.e., [0.9919517102615694, 0.9432048681541582, 0.9473684210526315]).
+This is the result of the previous run. The MATLAB script for drawing the graph was not updated and the saved model was overwritten.
+The accuracy under different environments can be accurately reproduced (check the "models/nrf_site")
