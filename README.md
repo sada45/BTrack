@@ -19,8 +19,12 @@ cnn_temp_main.py | models/temp_good | The code for temperature robustness (Fig.1
 cnn_track.py  | models/track   | The code for the case study (Fig.17)
 cfo_based_classifier.py | -| The code for comparing with the SOTA CFO-based method
 
+
+
 ------------
 P.S.
+
+typo in paper: in Sec.IV(B), the threshold for transient delay profile is 2 (3 is for SOTA CFO-based method)
 
 We collect 256/512 packets of each node in different scenarios, but the number of signal traces in the dataset may a bit less than the number. The reason is the interference in 2.4GHz can cause:
 (1) failed fine-grained preamble detection (`scripts/fext/feature_extractor.py/get_ramp_seg_cfo()`).

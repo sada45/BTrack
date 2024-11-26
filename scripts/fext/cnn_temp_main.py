@@ -390,6 +390,6 @@ def da_main(load=False, group_size=1):
 # import utils
 
 if __name__ == "__main__":
-    cc2650_main(True, 1)
-    # nrf_main(True, 1)
+    #cc2650_main(True, 1)
+    nrf_main(True, 1)
     # da_main(True, 1)
